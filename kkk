@@ -1,0 +1,101 @@
+1-(valor 1,5 pontos) Quantos erros tem no script abaixo? Qual(is) são eles?
+case "$file" in
+    *.txt}
+        echo "É um arquivo de texto."
+        cat "$file"
+
+    *.gif|*.jpg|*.png}
+        echo "É uma figura."
+        xloadimage "$file"
+
+    *}
+        echo "Não sei que arquivo é esse."
+
+esac
+
+RESPOSTA: 1 - Após o *.txt o correto é utilizar ) e não }
+	  2 - ;; após cat "$file"
+	  3 - Após *.png o correto é utilizar ) e não }
+	  4 - ;; após xloadimage "$file"
+          5 - Ao invés de *} utilizar *);;
+          6 - Após echo "Não sei que arquivo é esse." utilizar ;;
+
+_______________________________________________________________________________________________________________________________________________
+
+
+2-(valor 1,5 pontos) Crie um script chamado envia_github “mensagem”
+Este script deverá enviar todos os arquivos modificados para o github. 
+
+Com isso evita-se a necessidade de digitar todos os comando do git sempre que 
+quiser subir um arquivo para o repositorio Github.com
+
+  #!/bin/bash
+  
+  file=$git
+
+  if [ file $git add . ]
+  then
+    git commit -m
+    git push
+  else
+    echo -e "Não houve atualizações na pasta."
+  fi
+  
+
+_______________________________________________________________________________________________________________________________________________
+
+
+3-(valor 2,0 pontos) Faça um script para receber um arquivo como parâmetro e se o arquivo 
+estiver vazio, excluí-lo seguido da mensagem, “arquivo xx excluído”.
+Senão, enviar mensagem “arquivo não pode ser excluído pois contém informações”
+Se o arquivo não existir, emitir mensagem “arquivo inexiste”
+
+  #!/bin/bash
+   
+   file=$1
+   
+   if [ $file find -size 0k ]
+   then 
+      rm $file
+      echo -e "Arquivo $file excluído."
+   else
+      echo -e "O arquivo não pode ser excluído pois contém informações."
+   fi
+
+_______________________________________________________________________________________________________________________________________________
+
+4-(valor 2,0 pontos) Usando estrutura de repetição, faça um script para calcular e exibir quantas
+pastas e quantos arquivos tem na pasta atual.
+
+#!/bin/bash
+
+   txt=0
+   c=0
+   py=0
+   total=0
+
+   for  file in $(ls .)
+   do 
+      case "$file" in
+         *.txt)
+            txt=$(( $txt + 1 ))
+            total=$(( $total + 1 ))
+            ;;
+         *.c)
+            c=$(( $c + 1 ))
+            total=$(( $total + 1 ))
+            ;;
+          *.py)
+            py=$(( $py + 1 ))
+            total=$(( $total + 1 ))
+            ;;
+      *)
+      ;;  
+      esac
+   done
+   echo "Total de arquivos = $total"
+   echo "Total de arquivos .txt = $txt"
+   echo "Total de arquivos .c = $c"
+   echo "Total de arquivos .py = $py"
+
+
